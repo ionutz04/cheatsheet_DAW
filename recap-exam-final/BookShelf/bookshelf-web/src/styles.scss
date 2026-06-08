@@ -1,0 +1,159 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+body {
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #4f46e5;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #4338ca;
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+button.secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+input,
+select {
+  min-height: 2.75rem;
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.85rem;
+  border: 1px solid #333d58;
+  background: #141c34;
+  color: #f8fafc;
+}
+
+input::placeholder {
+  color: #94a3b8;
+}
+
+select {
+  appearance: none;
+}
+
+label span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #94a3b8;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::selection {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+/* ---- Layout & components (BookShelf) ---- */
+.shell { min-height: 100vh; }
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: #0d1530; position: sticky; top: 0; z-index: 10;
+}
+.brand { font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; }
+.nav { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.nav a { padding: 0.45rem 0.75rem; border-radius: 0.6rem; color: #cbd5e1; }
+.nav a:hover { background: rgba(255,255,255,0.06); text-decoration: none; }
+.nav a.active { background: #4f46e5; color: #fff; }
+.content { max-width: 980px; margin: 0 auto; padding: 1.5rem; }
+
+.card {
+  background: #141c34; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 1rem; padding: 1.25rem 1.4rem; margin-bottom: 1rem;
+}
+h1 { margin: 0 0 0.4rem; }
+.muted { color: #94a3b8; }
+.error { color: #fca5a5; margin: 0.4rem 0; }
+.actions { display: flex; gap: 0.6rem; margin-top: 0.8rem; flex-wrap: wrap; }
+.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+
+.home .hero { text-align: center; padding: 2rem 0 1rem; }
+.home .logo {
+  width: 56px; height: 56px; margin: 0 auto 0.75rem; border-radius: 1rem;
+  display: grid; place-items: center; background: #4f46e5; font-weight: 700; font-size: 1.4rem;
+}
+.home .subtitle { color: #94a3b8; }
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.25rem; }
+.cards .card { display: flex; flex-direction: column; gap: 0.3rem; }
+.cards .card-title { font-weight: 600; }
+.cards .card-desc { color: #94a3b8; font-size: 0.9rem; }
+.cards .card-icon { font-size: 1.4rem; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 0.6rem 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+th { color: #94a3b8; font-weight: 600; font-size: 0.85rem; }
+.row-actions { display: flex; gap: 0.4rem; }
+.row-actions button { padding: 0.4rem 0.7rem; }
+.badge { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; background: rgba(255,255,255,0.08); font-size: 0.8rem; }
+
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(2,6,23,0.7);
+  display: grid; place-items: center; padding: 1rem; z-index: 50;
+}
+.modal { background: #141c34; border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 1.5rem; width: min(440px, 100%); }
+.modal h2 { margin: 0 0 0.3rem; }
+.modal label { display: block; margin-top: 0.8rem; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1.2rem; }

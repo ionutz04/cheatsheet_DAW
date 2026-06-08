@@ -1,0 +1,30 @@
+<section class="card">
+  <div class="toolbar">
+    <h1>Authors</h1>
+    <button (click)="openCreate()">+ Author</button>
+  </div>
+  <p class="muted">Admin only (<code>adminGuard</code>). Creare prin <code>POST /api/authors</code>.</p>
+  @if (error()) { <div class="error">{{ error() }}</div> }
+  <table>
+    <thead><tr><th>Id</th><th>Name</th><th>Books</th><th>Created</th></tr></thead>
+    <tbody>
+      @for (a of authors(); track a.id) {
+        <tr>
+          <td>{{ a.id }}</td>
+          <td>{{ a.name }}</td>
+          <td><span class="badge">{{ a.bookCount }}</span></td>
+          <td>{{ a.createdAt | date:'yyyy-MM-dd' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>
+
+@if (modalOpen()) {
+  <app-modal title="Author nou" description="Adaugă un autor (POST /api/authors)." saveLabel="Salvează"
+             cancelLabel="Anulează" [busy]="modalBusy()" (cancel)="closeModal()" (confirm)="save()">
+    <label><span>Nume</span><input [(ngModel)]="name" /></label>
+    <label><span>Bio</span><input [(ngModel)]="bio" /></label>
+    @if (modalError()) { <div class="error">{{ modalError() }}</div> }
+  </app-modal>
+}

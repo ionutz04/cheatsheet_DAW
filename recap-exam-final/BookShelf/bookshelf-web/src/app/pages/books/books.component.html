@@ -1,0 +1,46 @@
+<section class="card">
+  <div class="toolbar">
+    <h1>Books</h1>
+    <button (click)="openCreate()">+ Book</button>
+  </div>
+  @if (error()) { <div class="error">{{ error() }}</div> }
+  @if (busy()) { <p class="muted">Se încarcă...</p> }
+  <table>
+    <thead><tr><th>Title</th><th>Author</th><th>Genre</th><th>Published</th><th></th></tr></thead>
+    <tbody>
+      @for (b of books(); track b.id) {
+        <tr>
+          <td><a [routerLink]="['/books', b.id]">{{ b.title }}</a></td>
+          <td>{{ b.authorName }}</td>
+          <td><span class="badge">{{ b.genreName }}</span></td>
+          <td>{{ b.publishedAt | date:'yyyy-MM-dd' }}</td>
+          <td class="row-actions">
+            <button class="secondary" (click)="openEdit(b)">Edit</button>
+            @if (isAdmin()) { <button class="secondary" (click)="delete(b)">Delete</button> }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>
+
+@if (modalOpen()) {
+  <app-modal [title]="modalTitle()" saveLabel="Salvează" cancelLabel="Anulează"
+             [busy]="modalBusy()" (cancel)="closeModal()" (confirm)="save()">
+    <label><span>Titlu</span><input [(ngModel)]="form.title" /></label>
+    <label><span>Descriere</span><input [(ngModel)]="form.description" /></label>
+    <label>
+      <span>Gen</span>
+      <select [(ngModel)]="form.genreId">
+        @for (g of genres(); track g.id) { <option [ngValue]="g.id">{{ g.name }}</option> }
+      </select>
+    </label>
+    <label>
+      <span>Autor</span>
+      <select [(ngModel)]="form.authorId">
+        @for (a of authors(); track a.id) { <option [ngValue]="a.id">{{ a.name }}</option> }
+      </select>
+    </label>
+    @if (modalError()) { <div class="error">{{ modalError() }}</div> }
+  </app-modal>
+}

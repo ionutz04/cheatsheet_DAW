@@ -1,0 +1,42 @@
+<div class="home">
+  <div class="hero">
+    <div class="logo">BS</div>
+    <h1>BookShelf</h1>
+    <p class="subtitle">Un mic catalog de cărți - frontend Angular peste un backend .NET Web API.</p>
+  </div>
+
+  @if (!isAuthenticated()) {
+    <div class="cards">
+      <a class="card" routerLink="/login">
+        <span class="card-title">Autentificare</span>
+        <span class="card-desc">Loghează-te ca să vezi cărțile și să adaugi date.</span>
+      </a>
+      <a class="card" routerLink="/genres">
+        <span class="card-title">Genuri</span>
+        <span class="card-desc">Lista de genuri - publică, fără login.</span>
+      </a>
+    </div>
+  }
+
+  @if (isAuthenticated()) {
+    <div class="cards">
+      <a class="card" routerLink="/books">
+        <span class="card-icon">B</span>
+        <span class="card-title">Books</span>
+        <span class="card-desc">Listă, detaliu, creare / editare / ștergere.</span>
+      </a>
+      @if (isAdmin()) {
+        <a class="card" routerLink="/authors">
+          <span class="card-icon">A</span>
+          <span class="card-title">Authors</span>
+          <span class="card-desc">Adaugă autori. Admin only.</span>
+        </a>
+      }
+      <a class="card" routerLink="/genres">
+        <span class="card-icon">G</span>
+        <span class="card-title">Genres</span>
+        <span class="card-desc">Genurile disponibile.</span>
+      </a>
+    </div>
+  }
+</div>

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <!-- Excludem proiectul de teste si frontend-ul Angular din compilarea proiectului principal -->
+  <ItemGroup>
+    <Compile Remove="BookShelf.Tests\**" />
+    <Content Remove="BookShelf.Tests\**" />
+    <EmbeddedResource Remove="BookShelf.Tests\**" />
+    <None Remove="BookShelf.Tests\**" />
+    <Compile Remove="bookshelf-web\**" />
+    <Content Remove="bookshelf-web\**" />
+    <EmbeddedResource Remove="bookshelf-web\**" />
+    <None Remove="bookshelf-web\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+  </ItemGroup>
+
+</Project>

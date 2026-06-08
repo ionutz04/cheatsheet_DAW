@@ -1,0 +1,13 @@
+<section class="card">
+  <h1>Genres</h1>
+  <p class="muted">Listă publică (<code>GET /api/genres</code>) - fără login.</p>
+  @if (error()) { <div class="error">{{ error() }}</div> }
+  <table>
+    <thead><tr><th>Id</th><th>Name</th></tr></thead>
+    <tbody>
+      @for (g of genres(); track g.id) {
+        <tr><td>{{ g.id }}</td><td>{{ g.name }}</td></tr>
+      }
+    </tbody>
+  </table>
+</section>

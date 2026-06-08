@@ -1,0 +1,49 @@
+<a routerLink="/books">Înapoi la Books</a>
+
+@if (error()) { <div class="error">{{ error() }}</div> }
+
+@if (book(); as b) {
+  <section class="card">
+    <h1>{{ b.title }}</h1>
+    <p class="muted">de {{ b.authorName }}, {{ b.genreName }}, {{ b.publishedAt | date:'yyyy-MM-dd' }}</p>
+    <p>{{ b.description }}</p>
+  </section>
+
+  <section class="card">
+    <h2>Reviews</h2>
+
+    @if (reviewsMissing()) {
+      <p class="muted">
+        Endpoint-ul <code>/api/reviews</code> nu există încă. Apare după <strong>Exercițiul 4</strong>
+        (entitatea Review) - atunci tot ce e mai jos începe să funcționeze, <em>fără</em> să schimbăm frontend-ul.
+      </p>
+    } @else {
+      @if (reviews().length === 0) {
+        <p class="muted">Nicio recenzie încă.</p>
+      } @else {
+        <table>
+          <thead><tr><th>Reviewer</th><th>Rating</th><th>Comment</th><th></th></tr></thead>
+          <tbody>
+            @for (r of reviews(); track r.id) {
+              <tr>
+                <td>{{ r.reviewer }}</td>
+                <td>{{ r.rating }}/5</td>
+                <td>{{ r.comment }}</td>
+                <td class="row-actions">
+                  @if (isAdmin()) { <button class="secondary" (click)="deleteReview(r)">Delete</button> }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+
+      <h3>Adaugă o recenzie</h3>
+      <label><span>Reviewer</span><input [(ngModel)]="reviewer" /></label>
+      <label><span>Rating (1-5)</span><input type="number" min="1" max="5" [(ngModel)]="rating" /></label>
+      <label><span>Comment</span><input [(ngModel)]="comment" /></label>
+      @if (addError()) { <div class="error">{{ addError() }}</div> }
+      <div class="actions"><button (click)="addReview()" [disabled]="adding()">Adaugă</button></div>
+    }
+  </section>
+}
